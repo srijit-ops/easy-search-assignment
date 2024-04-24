@@ -1,10 +1,14 @@
 import { useState } from 'react'
+import NewTaskModal from './components/NewTaskModal'
+import Alltasks from './components/Alltasks'
 
 function App() {
   
   return (
-    <div className='text-blue-500'>
-      hello
+    <div className='py-6 px-8'>
+      <NewTaskModal/>
+      <Alltasks/>
+      {/* <Modal/> */}
     </div>
   )
 }

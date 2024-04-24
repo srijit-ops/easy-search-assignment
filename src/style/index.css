@@ -12,3 +12,6 @@
   /* overflow-x: hidden;   */
   font-family: 'Poppins', sans-serif;
 }
+body{
+  @apply bg-[#f6f5f8];
+}
