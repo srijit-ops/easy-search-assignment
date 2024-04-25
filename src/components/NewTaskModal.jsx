@@ -1,15 +1,37 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import CustomModal from './common/CustomModal'
 import ModalInput from './common/ModalInput';
 import { disablePastDate } from '../utils/helperFunction';
+import { useDispatch } from 'react-redux';
+import { addTask } from '../actions/actionCreators';
+import { useSelector } from 'react-redux';
+import { nextTodoId } from '../utils/helperFunction';
 
 function NewTaskModal() {
+    const dispatch= useDispatch()
     const [open, setOpen] = useState(false);
+    const taskRef= useRef(null)
+    const dateRef= useRef(null)
+    const timeRef= useRef(null)
+    const todos= useSelector(state=>state.todos)
  
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => {
     setOpen(false)
   };
+
+  const addTaskHandler=()=>{
+    const newTask={
+      id:nextTodoId(todos),
+      taskDetail:taskRef?.current.value,
+      date: dateRef?.current.value,
+      time: timeRef?.current.value,
+      completed: false
+    }
+    onCloseModal()
+    dispatch(addTask(newTask))
+  }
+// console.log(useSelector(state=>state.todos))
   return (
     <div>
         <div className='flex justify-between items-center flex-wrap mb-10'>
@@ -18,11 +40,11 @@ function NewTaskModal() {
       </div>
       <CustomModal open={open} onCloseModal={onCloseModal} title={"Add new task"}>
     
-      <ModalInput labelText="Enter the task" dataType="text" holder="task name" addId="taskDef"/>
-      <ModalInput labelText="Enter the date" dataType="date" holder="date" addId="taskDate"  mindate={disablePastDate()}/>
-          <ModalInput labelText="Enter the time" dataType="time" holder="time" addId="taskTime"/>
+      <ModalInput labelText="Enter the task" dataType="text" holder="task name" addId="taskDef" referecnce={taskRef}/>
+      <ModalInput labelText="Enter the date" dataType="date" holder="date" addId="taskDate" referecnce={dateRef}  mindate={disablePastDate()}/>
+          <ModalInput labelText="Enter the time" dataType="time" holder="time" addId="taskTime" referecnce={timeRef}/>
     <div className='flex justify-center items-center mt-8'>
-      <button className='rounded-lg px-6 py-2 bg-[#546ef3] text-white'>Save task</button>
+      <button className='rounded-lg px-6 py-2 bg-[#546ef3] text-white' onClick={addTaskHandler}>Save task</button>
     </div>
    
   </CustomModal>
