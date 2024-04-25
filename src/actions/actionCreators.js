@@ -1,4 +1,4 @@
-import { add_task, delete_task, update_status } from "./actionTypes"
+import { add_task, delete_task, filter_task, update_status } from "./actionTypes"
 
 export const addTask=(taskDetail)=>{
     return {
@@ -14,9 +14,16 @@ export const updateStatus=(todoId)=>{
     }
 }
 
-export const deleteTask=()=>{
+export const deleteTask=(deleteId)=>{
     return {
         type: delete_task,
-        // payload:status
+        payload:deleteId
+    }
+}
+
+export const filterTask=(filter)=>{
+    return {
+        type:filter_task,
+        payload:filter
     }
 }
