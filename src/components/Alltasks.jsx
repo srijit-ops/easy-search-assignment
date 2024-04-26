@@ -40,7 +40,13 @@ function Alltasks() {
     return todo;
   });
 
-  return (
+  return todos?.length === 0 ? (
+    <div className="flex justify-center items-center">
+      <p className="text-gray-400 tracking-wider text-xl font-semibold mt-32">
+        No task available. Add some tasks.
+      </p>
+    </div>
+  ) : (
     <div>
       <div className="w-full flex justify-start items-center mb-8">
         <Select
@@ -56,24 +62,32 @@ function Alltasks() {
           options={filterOptions}
         />
       </div>
-      <div className="flex sm:justify-start justify-center items-start flex-wrap 2xl:gap-9 xl:gap-7 lg:gap-8 md:gap-7 sm:gap-11">
-        {filteredTodos?.map((todo) => {
-          return (
-            <div
-              className="xl:w-[18%] lg:w-[22%] md:w-[30%] sm:w-[45%] w-full"
-              key={todo.id}
-            >
-              <TaskCard
-                status={todo.completed}
-                name={todo.taskDetail}
-                date={todo.date}
-                time={todo.time}
-                id={todo.id}
-              />
-            </div>
-          );
-        })}
-      </div>
+      {filteredTodos?.length === 0 ? (
+        <div className="flex justify-center items-center">
+          <p className="text-gray-400 tracking-wider text-xl font-semibold mt-20">
+            No task available.
+          </p>
+        </div>
+      ) : (
+        <div className="flex sm:justify-start justify-center items-start flex-wrap 2xl:gap-9 xl:gap-7 lg:gap-8 md:gap-7 sm:gap-11">
+          {filteredTodos.map((todo) => {
+            return (
+              <div
+                className="xl:w-[18%] lg:w-[22%] md:w-[30%] sm:w-[45%] w-full"
+                key={todo.id}
+              >
+                <TaskCard
+                  status={todo.completed}
+                  name={todo.taskDetail}
+                  date={todo.date}
+                  time={todo.time}
+                  id={todo.id}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ const ModalInput = ({
       min={mindate}
       id={addId}
       ref={referecnce}
-      className="mt-3 mb-4 w-full p-4"
+      className="mt-3 mb-4 w-full px-4 py-3 border border-gray-950"
     />
   </div>
 );
