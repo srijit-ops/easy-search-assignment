@@ -1,0 +1,1 @@
+### A simple task tracking website to add new task, delete task, update the tasks' status and filter them based on completion status. Made with React JS and Redux. ###
