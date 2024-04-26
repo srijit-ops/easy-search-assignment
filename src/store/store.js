@@ -1,11 +1,16 @@
 import { createStore } from "redux";
 import { rootReducer } from "../reducers/rootReducer";
-import { useSelector } from "react-redux";
-import { loadDataFromLocalStorage, saveToLocalStorage } from "../utils/helperFunction";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-export const store= createStore(rootReducer, 
-    // loadDataFromLocalStorage()
-)
-// const storeState= store.getState()
-// console.log(storeState)
-// store.subscribe(()=>{saveToLocalStorage(storeState)})
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
+
+  const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store= createStore(persistedReducer)
+
+export const persistor= persistStore(store)
+

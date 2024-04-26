@@ -39,20 +39,25 @@ function Alltasks() {
   
   return (
     <div>
-      <div className='w-full flex justify-end items-center mb-8'>
+      <div className='w-full flex justify-start items-center mb-8'>
       <Select
             // styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+            styles={{menu: (base) => ({
+              ...base,
+              width: "max-content",
+              minWidth: "100%"
+         }),}}
             defaultValue={selectedOption}
             onChange={setSelectedOption}
             options={filterOptions}
           />
       </div>
-      <div className='flex justify-between items-center flex-wrap gap-6'>
+      <div className='flex justify-start items-center flex-wrap gap-9'>
       {
       filteredTodos?.map((todo)=>{
         console.log(todo)
           return(
-              <div className='w-1/5' key={todo.id}>
+              <div className='w-[18%]' key={todo.id}>
                   <TaskCard status={todo.completed} name={todo.taskDetail} date={todo.date} time={todo.time} id={todo.id}/>
               </div>
           )

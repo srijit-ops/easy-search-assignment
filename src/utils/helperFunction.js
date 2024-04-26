@@ -13,27 +13,23 @@ export const nextTodoId=(todos)=> {
     return maxId + 1
   }
 
-export const saveToLocalStorage=(data)=> {
-    try {
-      const finalData = JSON.stringify(data);
-      localStorage.setItem("todoList", finalData);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+// export const saveToLocalStorage=(data)=> {
+//     try {
+//       const finalData = JSON.stringify(data);
+//       localStorage.setItem("todoList", finalData);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
 
-export const loadDataFromLocalStorage=()=> {
-    try {
-      const finalData = localStorage.getItem("todoList");
-      if (finalData === null) return undefined;
-      return JSON.parse(finalData);
-    } catch (e) {
-      console.log(e);
-      return undefined;
-    }
-  }
+// export const loadDataFromLocalStorage=()=> {
+//     try {
+//       const finalData = localStorage.getItem("todoList");
+//       if (finalData === null) return undefined;
+//       return JSON.parse(finalData);
+//     } catch (e) {
+//       console.log(e);
+//       return undefined;
+//     }
+//   }
 
-// export const getTodos=()=>{
-//     const allTodos= useSelector(state=>state.todos)
-//     return allTodos
-// }

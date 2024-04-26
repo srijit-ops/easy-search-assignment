@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux';
 import { addTask } from '../actions/actionCreators';
 import { useSelector } from 'react-redux';
 import { nextTodoId } from '../utils/helperFunction';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function NewTaskModal() {
     const dispatch= useDispatch()
@@ -35,8 +38,14 @@ function NewTaskModal() {
   return (
     <div>
         <div className='flex justify-between items-center flex-wrap mb-10'>
-      <h2 className='text-3xl text-[#546ef3] font-semibold tracking-wider'>All todos</h2>
-      <button className='px-4 py-2 text-gray-950 bg-white' onClick={onOpenModal}>Add new</button>
+      <h2 className='text-3xl text-gray-800 font-semibold tracking-wider'>All todos</h2>
+      <button className='px-4 py-2 text-white bg-[#546ef3] hover:bg-gray-950 flex justify-between items-center gap-2 rounded-lg' onClick={onOpenModal}>
+      <FontAwesomeIcon
+                    icon={faPlus}
+                    className="text-lg"
+                  />
+        Add new
+      </button>
       </div>
       <CustomModal open={open} onCloseModal={onCloseModal} title={"Add new task"}>
     
